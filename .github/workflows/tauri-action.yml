@@ -35,10 +35,10 @@ jobs:
         
       - name: Push changes
         run: |
-        	git checkout -b ${{ matrix.platform }}
+        	git checkout -b "{{ matrix.platform }}"
         	git add -A
         	git commit -m "builded"
-        	git push origin ${{ matrix.platform }}
+        	git push origin "{{ matrix.platform }}"
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
