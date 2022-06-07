@@ -33,12 +33,29 @@ jobs:
       - name: Build the app
         uses: tauri-apps/tauri-action@v0
         
-      - name: Push changes
+      - name: Push changes macos
+        if: matrix.platform == 'macos-latest'
         run: |
-        	git checkout -b "{{ matrix.platform }}"
+        	git checkout -b macos
         	git add -A
         	git commit -m "builded"
-        	git push origin "{{ matrix.platform }}"
+        	git push origin macos
+        
+      - name: Push changes ubuntu
+        if: matrix.platform == 'ubuntu-latest'
+        run: |
+        	git checkout -b ubuntu
+        	git add -A
+        	git commit -m "builded"
+        	git push origin ubuntu
+        
+      - name: Push changes windows
+        if: matrix.platform == 'windows-latest'
+        run: |
+        	git checkout -b windows
+        	git add -A
+        	git commit -m "builded"
+        	git push origin windows
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
